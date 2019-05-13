@@ -123,13 +123,17 @@ def attractions():
 
 def save_to_json():
     while True:
-        raw_json = get_wait_time_list()
-        entry_json = raw_json['entries']
-        save_json = {'entries':entry_json}
+        try:
+            raw_json = get_wait_time_list()
+            entry_json = raw_json['entries']
+            save_json = {'entries':entry_json}
 
-        with open('wait_time.data','a') as f:
-            f.write(str(save_json)+'\n')
-
-        print(type(save_json))
-        time.sleep(300)
+            with open('wait_time.data','a') as f:
+                f.write(str(save_json)+'\n')
+            time.sleep(300)
+            print(type(save_json))
+        except BaseException as b:
+            print(BaseException)
+            time.sleep(5)
+        
 
