@@ -122,6 +122,7 @@ def attractions():
     return items
 
 def save_to_json():
+    num = 0
     while True:
         try:
             raw_json = get_wait_time_list()
@@ -131,9 +132,11 @@ def save_to_json():
             with open('wait_time.data','a') as f:
                 f.write(str(save_json)+'\n')
             time.sleep(300)
-            print(type(save_json))
+            num = 0
+            print('成功。',time.asctime( time.localtime(time.time())))
         except BaseException as b:
-            print(BaseException)
-            time.sleep(5)
+            num = num+1
+            print('第'+str(num)+'次出错了。',BaseException)
+            time.sleep(20)
         
 
