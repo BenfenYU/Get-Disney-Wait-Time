@@ -107,7 +107,8 @@ def get_wait_time_list():
             response = get_wait_time(token)
             #print(response)
         except (requests.HTTPError, requests.ConnectionError):
-            time.sleep(1)
+            print('error')
+            time.sleep(10)
         else:
             return response
 
@@ -129,11 +130,11 @@ def save_to_json():
             entry_json = raw_json['entries']
             save_json = {'entries':entry_json}
 
-            with open('wait_time.data','a') as f:
+            with open('../wait_time.data','a') as f:
                 f.write(str(save_json)+'\n')
-            time.sleep(300)
             num = 0
             print('成功。',time.asctime( time.localtime(time.time())))
+            time.sleep(300)
         except BaseException as b:
             num = num+1
             print('第'+str(num)+'次出错了。',BaseException)
