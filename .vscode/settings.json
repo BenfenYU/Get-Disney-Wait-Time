@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/home/bf/.conda/envs/tf/bin/python",
+    "python.pythonPath": "/home/bf/miniconda3/bin/python",
     "python.linting.pylintEnabled": false,
     "python.linting.pep8Enabled": true,
     "python.linting.enabled": true

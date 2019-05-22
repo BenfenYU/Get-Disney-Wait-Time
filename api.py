@@ -90,9 +90,10 @@ def get_wait_time(token):
         'Authorization': 'BEARER %s' % token,
     }
 
+    # 因为请求的是443端口，即https 协议，所以请求禁用证书验证
     resp = requests.get('https://apim.shanghaidisneyresort.com/facility-service/theme-parks/desShanghaiDisneyland;'
                         'entityType=theme-park;destination=shdr/wait-times?mobile=true&region=&region=CN',
-                        headers=headers)
+                        headers=headers,verify = False)
     resp.raise_for_status()
 
     
@@ -106,9 +107,12 @@ def get_wait_time_list():
             token = get_token()
             response = get_wait_time(token)
             #print(response)
-        except (requests.HTTPError, requests.ConnectionError):
-            print('error')
+        except requests.HTTPError as h: 
+            print(h)
             time.sleep(10)
+        except requests.ConnectionError as c:
+            print(c)
+            time.sleep(2)
         else:
             return response
 
